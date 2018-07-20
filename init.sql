@@ -9,6 +9,7 @@ CREATE TABLE user(
 CREATE TABLE zone(
     zone_id     INTEGER     PRIMARY KEY AUTOINCREMENT,
     created_by  INTEGER     REFERENCES user(uid),
+    domain      TEXT        NOT NULL,
     name        TEXT        NOT NULL
 );
 
@@ -31,6 +32,8 @@ CREATE TABLE privilege(
     FOREIGN KEY(user) REFERENCES user(uid),
     FOREIGN KEY(zone) REFERENCES zone(zone_id)
 );
+
+INSERT INTO user values('-1', 'unknown', 'unknown', 'unknown', 'unknown');
 
 /*
 Remember to use "PRAGMA foreign_keys = ON;"
